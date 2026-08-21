@@ -480,6 +480,8 @@ Column order is important:
 | 8 | report | markdown link | `[647](reports/647-...)` |
 | 9 | notes | string | one concise sentence |
 
+**Notes must lead with location and pay:** `dashboard/internal/data/derive.go` derives the dashboard's Location/Pay/Work-mode columns by regex over this exact cell (plus Role) — it has no other source. Lead the sentence with the JD's stated location (`City, ST` for US, bare international city otherwise) and, only when the JD advertises a figure, the pay range tagged `(POSTED)` — the same value as this row's `advertised_comp` — e.g. `Austin, TX (Hybrid). $140-210K (POSTED)`. Omit whichever part the JD doesn't state; never invent a figure.
+
 **Important:** TSV order has status BEFORE score. `applications.md` displays score before status. `merge-tracker.mjs` handles the conversion.
 
 **Optional fields (column ≥ 10):** if the offer came through an agency/recruiter (#1596), append a labeled field `via={Agency}` (for example `via=Hays`) — never positional; the label is mandatory. One extra unlabeled field is interpreted as the legacy location column. If the end employer is unknown, use `?` as company and add the descriptor in notes (for example `fintech, Leeds`). `merge-tracker.mjs` rejects ambiguous extras (two unlabeled extras, or two `via=` fields).

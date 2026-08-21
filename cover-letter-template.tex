@@ -1,0 +1,27 @@
+\documentclass[10pt, a4]{letter}
+\usepackage[top=0cm,bottom=0cm,left=2cm,right=2cm]{geometry}
+\usepackage{graphicx}
+\address{Mauricio Moreno\\Luisenstr. 5\\ 40215 D\"usseldorf\\ Germany}
+\begin{document}
+
+	\begin{letter}{{{RECIPIENT_LINE_1}}\\ {{RECIPIENT_LINE_2}} \\ {{RECIPIENT_CITY_COUNTRY}}}
+		\opening{{{SALUTATION}}}
+
+		{{BODY_PARAGRAPH_1 -- hook: why this role/company, tying candidate's core conviction to the JD's stated mission}}
+
+		{{BODY_PARAGRAPH_2 -- current role at Bayer Crop Science: DOE, statistical analysis plans, cross-functional communication, tools used, mirrored to JD vocabulary}}
+
+		{{BODY_PARAGRAPH_3 -- PhD/postdoc depth + honest domain-adjacency framing when the JD's industry differs from crop-science R&D: name the gap, then state plainly what transfers (methods) vs. what does not (domain-specific guidelines/terminology)}}
+
+		{{BODY_PARAGRAPH_4 -- credentials: "I have five peer-reviewed publications in peer-reviewed journals..." (always five -- verify against cv.md before every use, never copy a stale count) plus teaching/communication proof point}}
+
+		{{BODY_PARAGRAPH_5 -- why this company specifically: one concrete, current hook from company research (product launch, strategic priority, investment area), tied to where the role sits in it}}
+
+		Thank you for considering my application. I would welcome the opportunity to discuss how my background in statistical modeling, experimental design, and regulated R\&D could contribute to {{TEAM_OR_ROLE}} at {{COMPANY}}.
+
+		\closing{Sincerely,\\
+			\fromsig{\includegraphics[scale=0.06]{../assets/firma.png}}\\
+			\fromname{Mauricio Moreno, PhD}}
+	\end{letter}
+
+\end{document}

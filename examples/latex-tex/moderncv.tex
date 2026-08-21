@@ -1,0 +1,32 @@
+% Fictional example CV for latex-tex tests (moderncv family).
+\documentclass[11pt,a4paper,sans]{moderncv}
+\moderncvcolor{blue}
+\moderncvstyle{casual}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\name{Blair}{Sample}
+\address{1 Example Street}{Sample Town}{EX}
+\email{blair@example.dev}
+
+\begin{document}
+\makecvtitle
+
+\section{Experience}
+\cventry{2021 -- Present}{Platform Engineer}{Example Labs}{Sample Town}{}{\begin{itemize}
+    \item Operated Kubernetes clusters for internal platform teams, wrapping this
+    bullet's prose across multiple source lines with no explicit line break
+    to make sure multi-line extraction is not truncated at the first newline.
+    \item Introduced SLO dashboards that cut incident triage time.
+    % \item Stale commented bullet that must never become an editable slot.
+\end{itemize}
+}
+
+\section{Skills}
+\begin{itemize}
+  \item Extensive experience with distributed systems and observability tooling.
+\end{itemize}
+
+\cvdoubleitem{Kubernetes}{Expert}{Terraform}{Advanced}
+
+\end{document}

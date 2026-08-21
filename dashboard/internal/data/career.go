@@ -128,8 +128,15 @@ func ParseApplications(careerOpsPath string) []model.CareerApplication {
 		// Notes column, when present.
 		app.Notes = at("notes")
 
-		// Lift location / work mode / pay / last-contact out of the notes free-text
+		// Lift location / work mode / pay / last-contact out of the notes free-text.
 		deriveNoteFields(&app)
+
+		// An explicit Location column (the customized layout merge-tracker.mjs
+		// supports, #954/#1596) is ground truth — prefer it over the notes-regex
+		// guess above, which only exists because most trackers don't have one.
+		if loc := at("location"); loc != "" && loc != "—" && loc != "-" {
+			app.Location = loc
+		}
 
 		apps = append(apps, app)
 	}

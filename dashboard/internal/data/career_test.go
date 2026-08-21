@@ -295,6 +295,28 @@ func TestParseApplicationsMapsColumnsByHeader(t *testing.T) {
 	}
 }
 
+// An explicit Location cell is ground truth and must win over whatever
+// deriveNoteFields guesses from Notes prose — including when the column
+// names a place the Notes regex allowlist (reCityIntl) wouldn't recognize.
+const explicitLocationTracker = `# Applications Tracker
+
+| # | Date | Company | Role | Location | Score | Status | PDF | Report | Notes |
+|---|------|---------|------|----------|-------|--------|-----|--------|-------|
+| 1 | 2026-06-01 | Acme | VP Marketing | Ljubljana, Slovenia | 4.5/5 | Applied | ✅ | [1](reports/001.md) | Austin TX mentioned only in passing |
+`
+
+func TestParseApplicationsHonorsExplicitLocationColumn(t *testing.T) {
+	tempDir, _ := writeTracker(t, explicitLocationTracker)
+
+	apps := ParseApplications(tempDir)
+	if len(apps) != 1 {
+		t.Fatalf("expected 1 application, got %d", len(apps))
+	}
+	if got := apps[0].Location; got != "Ljubljana, Slovenia" {
+		t.Errorf("Location = %q, want the explicit column value %q (not a Notes-regex guess)", got, "Ljubljana, Slovenia")
+	}
+}
+
 // End-to-end status update on the inserted-column layout: parse, update, and
 // re-parse. Only the Status cell may change; every other cell stays intact.
 func TestUpdateApplicationStatusInsertedColumn(t *testing.T) {

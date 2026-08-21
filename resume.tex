@@ -1,0 +1,286 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+\definecolor{blc}{rgb}{0.22,0.45,0.70}
+%\usepackage{doi}
+\usepackage{tikz}
+\newcommand{\latex}{\LaTeX\xspace}
+\newcommand{\skill}[1]{%
+	\foreach \x in {1,...,5}{%
+		\vspace{-0.3cm}\ifnumgreater{\x}{#1}{\space\color{lightgray}}{\space\color{blc}}\faCircle}\par%
+}
+% moderncv themes
+\moderncvcolor{blue}                               % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
+\moderncvstyle{casual}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
+
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+%
+%\usepackage{datetime}
+%\def\dates[#1.#2-#3.#4]{\yearabove{\monthname[#1]}{#2}--\yearabove{\monthname[#3]}{#4}}
+%\newcommand{\yearabove}[2]{\parbox[t]{10mm}{\centering{#2\par\vspace{-2mm} \tiny{#1}}}}
+
+\makeatletter
+\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+\patchcmd{\thebibliography}
+{\setlength{\labelwidth}{\hintscolumnwidth}}
+{\setlength{\labelwidth}{0pt}}
+{}
+{}
+\makeatother
+
+% character encoding
+% cmap MUST load before fontenc: it hooks pdfTeX's font mechanism so every
+% glyph -- including composite accented letters (é, ü, í) and the en/em-dash
+% -- gets a correct ToUnicode CMap entry. Without it, pdflatex's Type1
+% Latin Modern fonts render those glyphs correctly on screen/print but
+% extract as replacement-character garbage when an ATS/AI screening tool
+% reads the PDF's text layer -- verified empirically via `pdftotext -raw`.
+\usepackage{cmap}
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\input{glyphtounicode}
+\pdfgentounicode=1
+% adjust the page margins
+\usepackage[scale=0.865]{geometry}
+\setlength{\hintscolumnwidth}{3.1cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% personal data
+\name{\Huge Mauricio}{\Huge Moreno}
+%\title{CV}                               % optional, remove / comment the line if not wanted
+\address{Luisenstr. 5}{40215 Düsseldorf}{Germany}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+\phone[mobile]{+49~151~2016~7783}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
+%\phone[fixed]{+2~(345)~678~901}
+%\phone[fax]{+3~(456)~789~012}
+\email{mmorenozambrano@gmail.com}                               % optional, remove / comment the line if not wanted
+\homepage{mauricio-moreno.net}                         % optional, remove / comment the line if not wanted
+\social[linkedin]{mmorenozam}                        % optional, remove / comment the line if not wanted
+%\social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
+%\social[github]{jdoe}                              % optional, remove / comment the line if not wanted
+%\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{pic}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+%\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+
+% bibliography adjustements (only useful if you make citations in your resume, or print a list of publications using BibTeX)
+%   to show numerical labels in the bibliography (default is to show no labels)
+\makeatletter\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}\makeatother
+%   to redefine the bibliography heading string ("Publications")
+%\renewcommand{\refname}{Articles}
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+\vspace{-2.6cm}
+\section{About}
+\textbf{Biostatistician} with 10+ years of experience across academic research and regulated R\&D environments, with expertise in Bayesian statistical modeling, linear mixed models, design of experiments, modeling and simulation, and translational research statistics, with particular focus on biologics development and regulated analytical workflows. Proficient in R and SAS, with a strong track record of delivering high-quality statistical analyses and communicating complex results to diverse scientific and non-scientific audiences. I am seeking to contribute to clinical drug development, where rigorous statistical methods can directly inform critical decisions and ultimately improve patient outcomes.
+\vspace{-0.3cm}
+\section{Experience}
+%\subsection{Vocational}
+\cventry{06/2022 -- present}{Biostatistics Scientist}{Bayer Crop Science}{Monheim am Rhein}{Germany}{\begin{itemize}
+		\item Provide statistical expertise for regulated R\&D projects, supporting study design, analysis planning, data analysis, and interpretation of results in cross-functional teams.
+		\item Design and optimize studies through simulation-based approaches and design of experiments (DOE), including power analysis and model-based evaluation of design assumptions.
+		\item Develop and contribute to statistical analysis plans and ensure reproducible analytical workflows to support high-quality and traceable results.
+		\item Lead cross-functional statistical discussions, translating scientific questions into statistical methodologies and communicating results to support regulatory and strategic decisions.
+		\item Contribute to standardization of statistical processes and quality standards across projects, including oversight of outsourced analytical work.
+	\end{itemize}
+}
+
+\cventry{10/2021 -- 03/2022}{Post-Doctoral Researcher}{Research Institute for Farm Animal Biology}{Dummerstorf}{Germany}{\begin{itemize}
+		\item Provided statistical consulting to researchers, supporting study design, analysis planning, and interpretation of results.
+		\item Applied advanced statistical methods (e.g., GLMMs, simulations) to ensure robust and reproducible analyses.
+		\item Communicated statistical results to non-statistical collaborators, supporting evidence-based decision making.
+	\end{itemize}
+}
+\cventry{02/2016 -- 08/2021}{Research associate}{Jacobs University Bremen}{Bremen}{Germany}{\begin{itemize}
+		\item Developed and applied advanced statistical and Bayesian models to complex biological systems, including parameter estimation, uncertainty quantification, and model validation.
+		\item Designed reproducible analytical workflows using R and Stan, ensuring transparency and traceability of results.
+		\item Collaborated with experimental scientists to translate biological hypotheses into quantitative frameworks and statistical analyses (e.g., PCA, ANOVA, GLMM).
+	\end{itemize}
+}
+
+\vspace{-0.3cm}
+\section{Early Career Experience}
+
+\cventry{11/2012 -- 08/2013}{Environmental statistical analyst}{Instituto Nacional de Estadística y Censos}{Quito}{Ecuador}{\begin{itemize}
+		\item Survey design aimed at industry, households and sectional government for construction of a national general database based on the Framework for Development of Environmental Statistics proposed by United Nations.
+		%\item Development of internal methodology for data collection and analyses to derive environmental indicators to produce base statistics useful for the implementation of an Environmental-Economic-Accounting System in Ecuador.\\
+	\end{itemize}
+}
+\cventry{03/2011 -- 11/2012}{Chemistry teacher}{Unidad Educativa San Gabriel}{Quito}{Ecuador}{\begin{itemize}
+		\item Advanced Chemistry class for senior students with a major in Sciences.
+		%\item Leadership of pro-environmental activities by the students with a focus on waste classification and good household practices.
+		%\item Development of leadership, organizational and pedagogic skills by teaching at high school level.\\
+	\end{itemize}
+}
+\cventry{07/2010 -- 01/2011}{Technical assistant}{Soluciones Ambientales Totales}{Quito}{Ecuador}{\begin{itemize}
+		\item Teacher of Environmental Education seminars about waste classification and disposal in several high schools of Quito.
+		%\item Progression monitoring: conduct of environmental friendly practices by students after seminar attendance.\\
+	\end{itemize}
+}
+\cventry{03/2010 -- 06/2010}{Independent consultant}{GTZ, Deutsche Gesellschaft für Technische Zusammenarbeit}{Quito}{Ecuador}{\begin{itemize}
+		\item Collection and analysis of data about the status of biotechnology, GMOs and biosafety in Ecuador.
+	\end{itemize}
+}
+
+\vspace{-0.3cm}
+\section{Education}
+\cventry{02/2016 -- 08/2021}{PhD in Bioinformatics}{Jacobs University Bremen}{Germany}{}{Thesis: "Mathematical modelling of cocoa bean fermentation processes"}  % arguments 3 to 6 can be left empty
+\cventry{09/2013 -- 09/2015}{MSc in Statistics}{Catholic University of Leuven}{Belgium}{\textit{Cum laude distinction}}{Thesis: "Four-Level Meta-Analysis: A comparison with Three-Level Meta-Analysis"}
+\cventry{09/2003 -- 04/2010}{BSc in Biotechnology}{Escuela Politécnica del Ejército}{Ecuador}{\textit{GPA 17.9/20}}{Thesis: "Urban waste-water treatment through the use of native \textit{cyanobacteria} from the \textit{Polylepis pauta} forest of Papallacta -- Ecuador" }
+
+%\section{Master thesis}
+%\cvitem{title}{\emph{Title}}
+%\cvitem{supervisors}{Supervisors}
+%\cvitem{description}{Short thesis abstract}
+\vspace{-0.3cm}
+\section{Statistical Methodology and Regulatory Experience}
+\begin{itemize}
+\item Extensive experience with linear mixed models and GLMMs in regulated environments.
+
+
+\item  Knowledge of CDISC standards, GCP principles, and clinical trial regulatory frameworks acquired through formal training and self-directed specialization in clinical development.
+
+\item Applied modeling and simulation for study design and decision criteria development.
+
+\item Experience supporting translational research through statistical analysis of complex biological datasets, including parameter estimation and model-based inference for mechanistic systems.
+
+\end{itemize}
+\vspace{-0.3cm}
+\section{Programming and Software skills}
+%\cvdoubleitem{R}{\skill{5}}{Stan}{\skill{4}}
+%\cvdoubleitem{Quarto}{\skill{4}}{Python}{\skill{3}}
+%\cvdoubleitem{SAS}{\skill{3}}{SQL}{\skill{3}}
+%\cventry{\LaTeX}{\skill{3}}{}{}{}{}
+
+\cvdoubleitem{R}{Expert}{Stan}{Advanced}
+\cvdoubleitem{Quarto}{Advanced}{RShiny}{Intermediate}
+\cvdoubleitem{SAS}{Intermediate}{SQL}{Intermediate}
+\cvdoubleitem{JMP}{Intermediate}{Python}{Intermediate}
+\vspace{-0.3cm}
+\section{Languages}
+\cvdoubleitem{Spanish}{Native speaker}{English}{Full professional proficiency}
+%\cvitemwithcomment{Spanish}{Native speaker}{}
+%\cvitemwithcomment{English}{Full professional proficiency}{}
+%\cvitemwithcomment{Language 3}{Skill level}{Comment}
+
+%\section{Academic Statistical Projects}
+%\textbf{Survival analysis of Atlantic halibut:} Project performed for the course "Statistical analysis of Reliability and Survival data".
+
+%\textbf{Longitudinal observational study of physical ability in elderly patients after hip fracture:} Project performed for the course "Concepts of multilevel, longitudinal and mixed models".
+%
+%\textbf{Investigating the flight response of Pacific brant:} Project performed for the course "Statistical consulting".
+%
+%\textbf{Identification of mutations in ovarian cancer cell lines and possible structural consequences:} Project performed for the course "Bioinformatics".
+%
+\vspace{-0.3cm}
+\section{Teaching \& Scientific Communication}
+
+\cventry{04/2023 -- Present}{Lecturer (Volunteer)}{Various Institutions}{Quito}{Ecuador}{\begin{itemize}
+		\item Designed and delivered advanced Statistics and R programming courses (200+ hours) for interdisciplinary scientific audiences, focusing on translating complex statistical concepts into decision-oriented frameworks.
+	\end{itemize}
+}
+
+
+%
+%
+%
+
+
+
+\vspace{-0.3cm}
+\section{References}
+\begin{tabular}{p{6cm}p{5.2cm}p{5.5cm}}%{llll}
+	Prof. Dr. Marc-Thorsten Hütt   & Dr. Erica Manesso & Elisabeth Deutschmann\\
+	Constructor University & Bayer Crop Science R\&D & F. Hoffmann-La Roche  \\
+	Computational Systems Biology  & Decision Pipeline & Statistical Programmer Analyst\\
+	\multicolumn{3}{l}{Contact details available upon request.}
+\end{tabular}
+
+
+% Publications from a BibTeX file without multibib
+%  for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
+%  to redefine the heading string ("Publications"): \renewcommand{\refname}{Articles}
+%\nocite{*}
+%\bibliographystyle{plain}
+%\bibliography{publications}                        % 'publications' is the name of a BibTeX file
+\vspace{-0.3cm}
+\begin{thebibliography}{1}
+	\bibitem{1}
+	Langbein, J., \textbf{Moreno-Zambrano}, \textbf{M.},  and Siebert, K.
+	\newblock How do goats ``read" 2D-images of familiar and unfamiliar conspecifics?.
+	\newblock {\em Frontiers in Psychology}, 14, 2023. \newblock {(doi.org/10.3389/fpsyg.2023.1089566)}
+
+
+	\bibitem{2}
+	\textbf{Moreno-Zambrano}, \textbf{M.}, Ullrich, M.~S., and
+	Huett, M-T.
+	\newblock Exploring cocoa bean fermentation mechanisms by kinetic modelling.
+	\newblock {\em Royal Society Open Science}, 9(2), 2022. \newblock {(doi.org/10.1098/rsos.210274)}
+
+
+	\bibitem{3}
+	Megias-Perez, R., \textbf{Moreno-Zambrano}, \textbf{M.}, Behrends, B., Corno, M.,
+	and Kuhnert, N.
+	\newblock Monitoring the changes of low molecular weight carbohydrates in cocoa
+	beans during spontaneous fermentation: a chemometric and kinetic approach.
+	\newblock {\em Food Research International}, 2019.
+	\newblock {(doi.org/10.1016/j.foodres.2019.108865)}
+
+	\bibitem{4}
+	\textbf{Moreno-Zambrano}, \textbf{M.}, Grimbs, S., Ullrich, M.~S., and
+	Huett, M-T.
+	\newblock A mathematical model of cocoa bean fermentation.
+	\newblock {\em Royal Society Open Science}, 5(10), 2018.
+	\newblock {(doi.org/10.1098/rsos.180964)}
+
+	\bibitem{5}
+	Flores, F.~J., Marek, S.~M., Anderson, J.~A., Mitchell, T.~K., \textbf{Moreno-Zambrano}, \textbf{M.}, and Walker, N.~R.
+	\newblock Reactive oxygen species production and alternative hosts of spring
+	dead spot-causing fungi.
+	\newblock {\em International Turfgrass Society and ACSESS}, 13:213--224, 2017.
+	\newblock {(doi.org/10.2134/itsrj2016.06.0480)}
+
+%	\bibitem{5}
+%	F.~J. F., S.~M. M., J.~A. A., T.~K. M., \textbf{M.}
+%	\textbf{Moreno-Zambrano}, and N.~R. W.
+%	\newblock Reactive oxygen species production and alternative hosts of spring
+%	dead spot-causing fungi.
+%	\newblock {\em International Turfgrass Society and ACSESS}, 13:213--224, 2017.
+%	\newblock {(doi.org/10.2134/itsrj2016.06.0480)}
+
+
+\end{thebibliography}
+
+
+% Publications from a BibTeX file using the multibib package
+%\section{Publications}
+%\nocitebook{book1,book2}
+%\bibliographystylebook{plain}
+%\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
+%\nocitemisc{misc1,misc2,misc3}
+%\bibliographystylemisc{plain}
+%\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
+
+
+
+%\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
+\end{document}
+
+
+%% end of file `template.tex'.

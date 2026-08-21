@@ -619,6 +619,7 @@ Save full evaluation in `reports/{###}-{company-slug}-{YYYY-MM-DD}.md`.
 - Status: `Evaluated`
 - PDF: ❌ (or ✅ if auto-pipeline generated PDF)
 - Report: root-relative link `[001](reports/001-company-2026-01-01.md)` (when merged via `merge-tracker.mjs` it is normalized to be relative to the tracker's own dir, e.g. `../reports/...`; see #760)
+- Notes: one concise sentence — lead with the JD's stated **location** (`City, ST` for US, bare international city otherwise) and, when the JD advertises a figure, the **pay range** tagged `(POSTED)` (the same string as this report's `advertised_comp`), e.g. `Austin, TX (Hybrid). $140-210K (POSTED)`. This is the only input `dashboard/internal/data/derive.go` has for the dashboard's Location/Pay columns — see AGENTS.md → "Notes must carry location and pay". Omit whichever part the JD doesn't state; never invent a figure.
 
 **Tracker format:**
 

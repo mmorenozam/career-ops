@@ -11286,6 +11286,58 @@ try {
     fail(`tabularx-itemize manifest missing slots: ${JSON.stringify(tabManifest)}`);
   }
 
+  // moderncv family: \cventry itemize bullets (incl. one wrapped across
+  // multiple source lines with no explicit line break) + a standalone
+  // itemize block outside any \cventry, and a commented-out bullet that
+  // must never become a slot.
+  const moderncvFixture = readFileSync(join(ROOT, 'examples/latex-tex/moderncv.tex'), 'utf-8');
+
+  if (detectFamily(moderncvFixture) === 'moderncv') {
+    pass('moderncv fixture detected as moderncv family');
+  } else {
+    fail('moderncv fixture family detection failed');
+  }
+
+  const mcvManifest = buildManifest('moderncv.tex', moderncvFixture);
+  const mcvBullets = mcvManifest.slots.filter(s => s.kind === 'bullet');
+  if (mcvManifest.supported && mcvBullets.length === 3) {
+    pass(`moderncv manifest extracts 3 bullets (${mcvBullets.length}) across \\cventry and standalone itemize`);
+  } else {
+    fail(`moderncv manifest bullet mismatch (want 3): ${JSON.stringify(mcvManifest.slots.map(s => ({ id: s.id, text: s.text.slice(0, 40) })))}`);
+  }
+
+  const wrappedBullet = mcvBullets[0];
+  if (wrappedBullet && wrappedBullet.text.includes('multi-line extraction is not truncated at the first newline')) {
+    pass('moderncv extraction captures a bullet wrapped across multiple source lines, not just its first line');
+  } else {
+    fail(`moderncv extraction truncated a multi-line bullet: ${JSON.stringify(wrappedBullet)}`);
+  }
+
+  if (mcvManifest.slots.every(s => !s.text.includes('Stale commented bullet'))) {
+    pass('moderncv extraction skips commented-out \\item bullets');
+  } else {
+    fail('moderncv extraction leaked a commented-out bullet into slots');
+  }
+
+  const mcvRoundTrip = applyPatches(
+    moderncvFixture,
+    mcvManifest.slots.map(s => ({ id: s.id, text: s.text })),
+    mcvManifest.slots,
+    { escape: false },
+  );
+  if (mcvRoundTrip === moderncvFixture) {
+    pass('moderncv no-op patch round-trip is byte-identical (spans point at bullet text only)');
+  } else {
+    fail('moderncv no-op patch round-trip altered the document — slot spans are misaligned');
+  }
+
+  const mcvPatched = applyPatches(moderncvFixture, [{ id: mcvBullets[1].id, text: 'Tailored moderncv bullet.' }], mcvManifest.slots);
+  if (mcvPatched.includes('\\item Tailored moderncv bullet.') && mcvPatched.includes('Introduced SLO dashboards') === false) {
+    pass('applyPatches rewrites a moderncv \\cventry bullet in place');
+  } else {
+    fail('applyPatches did not rewrite the moderncv bullet correctly');
+  }
+
   const firstBullet = manifest.slots.find(s => s.kind === 'bullet');
   if (firstBullet) {
     const patched = applyPatches(resumeFixture, [{ id: firstBullet.id, text: 'Tailored summary bullet for testing.' }], manifest.slots);
